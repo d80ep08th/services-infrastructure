@@ -1,4 +1,4 @@
-name: dev-deploy
+name: deploy
 
 on:
   issue_comment: 
@@ -14,7 +14,12 @@ jobs:
     - name: Run a one-line script
       run: echo Hello, world!
     - name: Deploy to Development
-      run: echo "deploying to development "
+      run: |
+        mkdir ~/.aws
+        echo '[profile eb-cli]' >> ~/.aws/config
+        echo 'aws_access_key_id =' ${{ secrets.AWS_ACCESS_KEY_ID}} >> ~/.aws/config
+        echo 'aws_secret_access_key =' ${{ secrets.AWS_SECRET_ACCESS_KEY }} >> ~/.aws/config
+        ~/.local/bin/eb deploy services-dev -l $GITHUB_SHA
       if: github.event.comment.body == 'deploy' && github.event.comment.issue_url == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/1'
     - name: Deploy to Production
       run: echo "deploying to production"
