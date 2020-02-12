@@ -20,4 +20,4 @@ jobs:
         ISSUE_URL: ${{ github.event.comment.issue_url }}
         USER_LOGIN: ${{ github.event.comment.user.login }}
       run: echo "deploying to development environment"
-      if: $COMMENT_BODY == 'deploy' && $USER_LOGIN == 'dennyabrain' && ISSUE_URL == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/1'
+      if: COMMENT_BODY == 'deploy' && USER_LOGIN == 'dennyabrain' && ISSUE_URL == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/1'
