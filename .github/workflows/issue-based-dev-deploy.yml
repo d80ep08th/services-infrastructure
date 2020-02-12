@@ -16,4 +16,10 @@ jobs:
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
+        COMMENT_BODY: ${{ github.event.comment.body }}
+        ISSUE_URL: ${{ github.event.comment.issue_url }}
+        USER_LOGIN: ${{ github.event.comment.user.login }}
+      run: |
+        echo "$COMMENT_BODY"
+        echo "$ISSUE_URL"
+        echo "$USER_LOGIN"
