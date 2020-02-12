@@ -18,8 +18,4 @@ jobs:
       if: github.event.comment.body == 'deploy' && github.event.comment.issue_url == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/1'
     - name: Deploy to Production
       run: echo "deploying to production"
-      if: github.event.comment.body == 'deploy' && github.event.comment.user.login == 'dennyabrain' && github.event.comment.issue_url == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/1'
-    - name: Test
-      env:
-        ISSUE_URL: ${{ github.event.comment.issue_url }}
-      run: echo "$ISSUE_URL"
+      if: github.event.comment.body == 'deploy' && github.event.comment.user.login == 'dennyabrain' && github.event.comment.issue_url == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/2'
