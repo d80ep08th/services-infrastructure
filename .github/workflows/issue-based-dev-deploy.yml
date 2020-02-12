@@ -16,5 +16,4 @@ jobs:
     - name: Run a multi-line script
       run: |
         echo test
-        echo ${issue}
-        echo ${action}
+        echo ${{ github }}
