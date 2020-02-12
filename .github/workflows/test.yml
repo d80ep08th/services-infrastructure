@@ -1,4 +1,4 @@
-name: deploy-dev
+name: test
 
 on: 
     issue_comment:
