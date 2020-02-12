@@ -1,14 +1,6 @@
 version: '3.4'
 
 services: 
-    job-scheduler:
-        image: 'mcuadros/ofelia:latest'
-        container_name: 'job-scheduler'
-        volumes:
-            - ~/data/job-scheduler/config.ini:/etc/ofelia/config.ini
-            - ~/data/job-scheduler/logs:/tmp/logs
-            - /var/run/docker.sock:/var/run/docker.sock
-        restart: always
     telegram-bot:
         image: 'tattletech/archive-telegram-bot'
         env_file: .env
