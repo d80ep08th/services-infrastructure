@@ -3,7 +3,7 @@ name: deploy-dev
 on: 
   push:
     branches: 
-      - development
+      - master
 
 jobs:
   build:
@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: developmentß
-
+        ref: master
+ßß
     - name: Install EB-CLI
       run: pip install awsebcli --upgrade --user
       
@@ -25,4 +25,4 @@ jobs:
         echo '[profile eb-cli]' >> ~/.aws/config
         echo 'aws_access_key_id =' ${{ secrets.AWS_ACCESS_KEY_ID}} >> ~/.aws/config
         echo 'aws_secret_access_key =' ${{ secrets.AWS_SECRET_ACCESS_KEY }} >> ~/.aws/config
-        ~/.local/bin/eb deploy services-dev -l $GITHUB_SHA
+        ~/.local/bin/eb deploy services-live -l $GITHUB_SHA
