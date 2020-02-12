@@ -19,5 +19,5 @@ jobs:
         COMMENT_BODY: ${{ github.event.comment.body }}
         ISSUE_URL: ${{ github.event.comment.issue_url }}
         USER_LOGIN: ${{ github.event.comment.user.login }}
-      run: echo "deploying to development environment"
+      run: echo "deploying to development environment $COMMENT_BODY"
       if: $COMMENT_BODY == 'deploy'
