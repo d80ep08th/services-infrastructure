@@ -1,0 +1,16 @@
+name: deploy-dev
+
+on: 
+    issue_comment:
+        types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SHA8: ${GITHUB_SHA::8}
+
+    - name: dev
+      run: |
+        echo ${issue}
+        echo ${comment}

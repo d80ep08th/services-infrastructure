@@ -1,4 +1,6 @@
 branch-defaults:
+  development:
+    environment: services-dev
   master:
     environment: services-dev
 environment-defaults:
