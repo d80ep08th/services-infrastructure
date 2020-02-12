@@ -5,12 +5,14 @@ on:
         types: [created]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      SHA8: ${GITHUB_SHA::8}
+    build:
+        runs-on: ubuntu-latest
+        env:
+            SHA8: ${GITHUB_SHA::8}
 
-    - name: dev
-      run: |
-        echo ${issue}
-        echo ${comment}
+        steps:
+            - uses: actions/checkout@v1
+            - run: |
+                echo "test"
+                echo ${issue}
+                echo ${comment}
