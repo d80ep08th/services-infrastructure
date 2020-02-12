@@ -12,7 +12,7 @@ jobs:
       SHA8: ${GITHUB_SHA::8}
 
     steps:
-    - uses: actions/checkout@v1ß
+    - uses: actions/checkout@v1
 
     - name: Install EB-CLI
       run: pip install awsebcli --upgrade --user
