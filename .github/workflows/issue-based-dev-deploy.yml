@@ -14,10 +14,10 @@ jobs:
     - name: Run a one-line script
       run: echo Hello, world!
     - name: Deploy to Development
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-        COMMENT_BODY: ${{ github.event.comment.body }}
-        ISSUE_URL: ${{ github.event.comment.issue_url }}
-        USER_LOGIN: ${{ github.event.comment.user.login }}
-      run: echo "deploying to development environment $COMMENT_BODY"
+      run: echo "deploying to development "
+      if: github.event.comment.body == 'deploy' && github.event.comment.issue_url == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/1'
+    - name: Deploy to Production
+      run: echo "deploying to production"
       if: github.event.comment.body == 'deploy' && github.event.comment.user.login == 'dennyabrain' && github.event.comment.issue_url == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/1'
+    - name: Test
+      run: echo github.event.comment.issue_url
