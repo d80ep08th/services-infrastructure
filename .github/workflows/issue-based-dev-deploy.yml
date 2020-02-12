@@ -16,4 +16,4 @@ jobs:
     - name: Run a multi-line script
       run: |
         echo test
-        echo ${{ github }}
+        echo ${{ toJson(steps) }}
