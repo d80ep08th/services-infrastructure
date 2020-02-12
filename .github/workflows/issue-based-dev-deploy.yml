@@ -13,6 +13,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run a one-line script
       run: echo Hello, world!
+      
+    - name: Install EB-CLI
+      run: pip install awsebcli --upgrade --user
+      
     - name: Deploy to Development
       run: |
         mkdir ~/.aws
@@ -21,6 +25,7 @@ jobs:
         echo 'aws_secret_access_key =' ${{ secrets.AWS_SECRET_ACCESS_KEY }} >> ~/.aws/config
         ~/.local/bin/eb deploy services-dev -l $GITHUB_SHA
       if: github.event.comment.body == 'deploy' && github.event.comment.issue_url == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/1'
+    
     - name: Deploy to Production
       run: echo "deploying to production"
       if: github.event.comment.body == 'deploy' && github.event.comment.user.login == 'dennyabrain' && github.event.comment.issue_url == 'https://api.github.com/repos/tattle-made/services-infrastructure/issues/2'
