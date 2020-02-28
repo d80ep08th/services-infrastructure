@@ -1,0 +1,35 @@
+name: deploy-dev
+
+on: repository-dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SHA8: ${GITHUB_SHA::8}
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: development
+
+    - name: Install EB-CLI
+      run: pip install awsebcli --upgrade --user
+      
+    - name: deploy to ebs
+      run: |
+        mkdir ~/.aws
+        echo '[profile eb-cli]' >> ~/.aws/config
+        echo 'aws_access_key_id =' ${{ secrets.AWS_ACCESS_KEY_ID}} >> ~/.aws/config
+        echo 'aws_secret_access_key =' ${{ secrets.AWS_SECRET_ACCESS_KEY }} >> ~/.aws/config
+        ~/.local/bin/eb deploy services-dev -l $GITHUB_SHA
+    
+    - name: Notify on Slack
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_MESSAGE: 'Deployed service-infrastructure to dev environment'
+        SLACK_TITLE: 'trigger-from-service workflow complete'
+        SLACK_COLOR: '#020637'
+        SLACK_ICON: https://tattle-media.s3.amazonaws.com/monogram-dark.svg
+
