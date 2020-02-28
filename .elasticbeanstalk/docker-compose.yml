@@ -1,0 +1,8 @@
+factcheckscraperapi:
+  image: tattletech/factcheck-scraper:latest
+  ports:
+  - 3001:80
+telegrambot:
+  image: tattletech/archive-telegram-bot:latest
+  ports:
+  - 3000:8443
