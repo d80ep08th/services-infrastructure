@@ -34,4 +34,5 @@ jobs:
         SLACK_MESSAGE: 'Deployed seervice-infrastructure to dev environment'
         SLACK_TITLE: 'deploy-dev workflow complete'
         SLACK_COLOR: '#020637'
+        SLACK_ICON: https://tattle-media.s3.amazonaws.com/monogram-dark.svg
 
