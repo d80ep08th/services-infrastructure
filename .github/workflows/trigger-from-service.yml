@@ -1,6 +1,8 @@
 name: deploy-dev
 
-on: repository-dispatch
+on: 
+    repository-dispatch:
+        types: [build-dev-application]
 
 jobs:
   build:
