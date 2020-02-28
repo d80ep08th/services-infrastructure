@@ -8,7 +8,7 @@
             "memoryReservation": 256,
             "portMappings": [
                 {
-                    "containerPort": 8443,
+                    "containerPort": 8443, 
                     "hostPort": 3000
                 }
             ]
