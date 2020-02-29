@@ -14,7 +14,7 @@
             ]
         },
         {
-            "name": "factcheck-scraper-api",  
+            "name": "factcheck-scraper-api",
             "memory": 256,
             "memoryReservation": 256,
             "image":"tattletech/factcheck-scraper:latest",
