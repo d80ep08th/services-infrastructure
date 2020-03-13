@@ -1,4 +1,4 @@
-name: deploy-dev
+name: deploy-live
 
 on: 
   push:
@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         ref: master
-ßß
+
     - name: Install EB-CLI
       run: pip install awsebcli --upgrade --user
       
@@ -26,3 +26,12 @@ jobs:
         echo 'aws_access_key_id =' ${{ secrets.AWS_ACCESS_KEY_ID}} >> ~/.aws/config
         echo 'aws_secret_access_key =' ${{ secrets.AWS_SECRET_ACCESS_KEY }} >> ~/.aws/config
         ~/.local/bin/eb deploy services-live -l $GITHUB_SHA
+
+        - name: Notify on Slack
+        uses: rtCamp/action-slack-notify@v2.0.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: 'Deployed seervice-infrastructure to live environment'
+          SLACK_TITLE: 'deploy-live workflow complete'
+          SLACK_COLOR: '#020637'
+          SLACK_ICON: https://tattle-media.s3.amazonaws.com/monogram-dark.svg
