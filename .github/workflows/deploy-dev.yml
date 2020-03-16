@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: developmentß
+        ref: development
 
     - name: Install EB-CLI
       run: pip install awsebcli --upgrade --user
