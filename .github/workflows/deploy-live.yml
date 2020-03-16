@@ -25,7 +25,7 @@ jobs:
         echo '[profile eb-cli]' >> ~/.aws/config
         echo 'aws_access_key_id =' ${{ secrets.AWS_ACCESS_KEY_ID}} >> ~/.aws/config
         echo 'aws_secret_access_key =' ${{ secrets.AWS_SECRET_ACCESS_KEY }} >> ~/.aws/config
-        ~/.local/bin/eb deploy services-live -l $GITHUB_SHA
+        ~/.local/bin/eb deploy services -l $GITHUB_SHA
 
         - name: Notify on Slack
         uses: rtCamp/action-slack-notify@v2.0.0
